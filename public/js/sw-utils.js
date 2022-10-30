@@ -23,8 +23,15 @@ function actualizaCacheDinamico( dynamicCache, req, res ) {
 /*Network with cache fallback / update*/
 function manejoApiMensajes( cacheName, req ) {
     if ( req.clone().method === 'POST' ) {
-        
-        return fetch( req );
+        if ( self.registration.sync ) {
+            return req.clone().text().then( body =>{
+                console.log(body);
+                const bodyObj = JSON.parse( body );
+                return guardarMensaje( bodyObj );
+            });
+        } else {
+            return fetch( req );
+        }
     } else {
         return fetch( req ).then( res => {
             if ( res.ok ) {
