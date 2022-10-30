@@ -143,3 +143,16 @@ postBtn.on('click', function() {
     crearMensajeHTML( mensaje, usuario );
 
 });
+
+/**se obtiene mensajes */
+
+function getMensajes() {
+    fetch('api')
+        .then( res => res.json() )
+        .then( posts => {
+            console.log(posts);
+            posts.forEach( post =>
+                crearMensajeHTML( post.mensaje, post.user ));
+        });
+}
+getMensajes();
