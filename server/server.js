@@ -13,11 +13,11 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 // Directorio Público
 app.use(express.static(publicPath));
 
-// Rutas 
+// Rutas // desde Code.dev
 const routes = require('./routes');
 app.use('/api', routes );
 
-
+//Janus
 
 app.listen(port, (err) => {
 
